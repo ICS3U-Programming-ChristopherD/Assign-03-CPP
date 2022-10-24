@@ -124,7 +124,7 @@ int main() {
                   << "try again.\n\n";
         std::cin >> invalidRestart;
         std::cout << "\n\n\n\n";
-        main();
+        return main();
     }
 
     // Checks if the 'a' value is equal to 0:
@@ -132,7 +132,19 @@ int main() {
         std::cout << "The 'a' value cannot be equal to 0.\n\n";
         std::cout << "Enter the 'a' value of the quadratic:\n";
         std::cout << ">> ";
-        std::cin >> a;
+        std::cin >> userA;
+        try {
+            a = std::stoi(userA);
+        }
+
+        // Exception thrown if the user did not enter a number:
+        catch (std::invalid_argument) {
+            std::cout << "You did not enter a number, enter any key to "
+                      << "try again.\n\n";
+            std::cin >> invalidRestart;
+            std::cout << "\n\n\n\n";
+            return main();
+        }
     }
 
     // Gets the 'b' value of the quadratic
